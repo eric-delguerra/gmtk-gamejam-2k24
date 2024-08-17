@@ -1,0 +1,189 @@
+[gd_scene load_steps=30 format=4 uid="uid://b1tu5po4y712s"]
+
+[ext_resource type="PackedScene" uid="uid://wm48lx3lhf8q" path="res://Player/Player.tscn" id="1_6meq4"]
+[ext_resource type="Script" path="res://main.gd" id="1_ctjlf"]
+[ext_resource type="Texture2D" uid="uid://dcwqp058yskoo" path="res://Sprites/Ground.png" id="2_6nw57"]
+[ext_resource type="Texture2D" uid="uid://dgmagv88dmahx" path="res://Sprites/Ressources/Ocean_6/1.png" id="2_hbibc"]
+[ext_resource type="Texture2D" uid="uid://kyjuoldm7ht1" path="res://Sprites/Ressources/oak_woods_v1.0/decorations/sign.png" id="2_hc782"]
+[ext_resource type="PackedScene" uid="uid://b8xgl7ttf2eg8" path="res://Spawn/Spawn.tscn" id="3_0re32"]
+[ext_resource type="Texture2D" uid="uid://cgh5aala61tuw" path="res://Sprites/Ressources/oak_woods_v1.0/decorations/lamp.png" id="3_5jo27"]
+[ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="3_uujab"]
+[ext_resource type="Texture2D" uid="uid://23mevwc5nf7m" path="res://Sprites/Ressources/Ocean_6/3.png" id="4_imepl"]
+[ext_resource type="Texture2D" uid="uid://b2k85qbaivuiw" path="res://Sprites/Ressources/Ocean_6/2.png" id="5_17hn7"]
+[ext_resource type="Shader" path="res://Shaders/water_shader.gdshader" id="7_auajo"]
+[ext_resource type="Texture2D" uid="uid://dr00p6g36v4au" path="res://Sprites/Ressources/white.png" id="8_mcovv"]
+[ext_resource type="PackedScene" uid="uid://dmud2werglain" path="res://Cat/Cat.tscn" id="9_poinw"]
+[ext_resource type="Texture2D" uid="uid://ckl6t6a3uwnhd" path="res://Sprites/Ressources/sol.png" id="10_8csvp"]
+[ext_resource type="Texture2D" uid="uid://d1jjc3yvnja8k" path="res://Sprites/Ressources/sols.png" id="11_05bcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hofnq"]
+shader = ExtResource("3_uujab")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ox6sh"]
+blend_mode = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dxyj7"]
+texture = ExtResource("2_6nw57")
+texture_region_size = Vector2i(48, 48)
+use_texture_padding = false
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gtrm"]
+texture = ExtResource("10_8csvp")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4m88d"]
+texture = ExtResource("11_05bcy")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rlbb7"]
+tile_size = Vector2i(48, 48)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+sources/0 = SubResource("TileSetAtlasSource_dxyj7")
+sources/1 = SubResource("TileSetAtlasSource_6gtrm")
+sources/2 = SubResource("TileSetAtlasSource_4m88d")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p6hyu"]
+friction = 0.8
+rough = true
+bounce = 0.45
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xypm6"]
+size = Vector2(701.5, 190.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hgr0"]
+size = Vector2(62, 77.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etin0"]
+size = Vector2(51.5, 91)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wvxmn"]
+frequency = 0.033
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljhe1"]
+seamless = true
+noise = SubResource("FastNoiseLite_wvxmn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmgv2"]
+shader = ExtResource("7_auajo")
+shader_parameter/water_color = Color(0.1666, 0.19493, 0.251047, 1)
+shader_parameter/wave_noise = SubResource("NoiseTexture2D_ljhe1")
+
+[sub_resource type="Environment" id="Environment_xw8vr"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.03
+glow_hdr_luminance_cap = 8.47
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ctjlf")
+
+[node name="Decort" type="Node2D" parent="."]
+position = Vector2(8.00006, -51)
+
+[node name="fond" type="Sprite2D" parent="Decort"]
+position = Vector2(583, 407)
+scale = Vector2(2.27662, 2.30247)
+texture = ExtResource("2_hbibc")
+
+[node name="lune" type="Sprite2D" parent="Decort"]
+position = Vector2(682, 426)
+scale = Vector2(1.47222, 1.47222)
+texture = ExtResource("5_17hn7")
+
+[node name="nuage" type="Sprite2D" parent="Decort"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hofnq")
+position = Vector2(638, 393)
+scale = Vector2(2.28472, 2.28472)
+texture = ExtResource("4_imepl")
+
+[node name="Sign" type="Sprite2D" parent="Decort"]
+position = Vector2(154, 490)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_hc782")
+
+[node name="Lamp" type="Sprite2D" parent="Decort"]
+position = Vector2(475, 450)
+scale = Vector2(2.8913, 2.8913)
+texture = ExtResource("3_5jo27")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Decort/Lamp"]
+self_modulate = Color(77.838, 51.351, 0, 0.048)
+material = SubResource("CanvasItemMaterial_ox6sh")
+position = Vector2(5.87969, -6.22557)
+scale = Vector2(0.0350878, 0.0417112)
+texture = ExtResource("8_mcovv")
+
+[node name="Cat" parent="." instance=ExtResource("9_poinw")]
+position = Vector2(93, 478)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(8.00006, -51)
+tile_map_data = PackedByteArray("AAAGAAsAAgAAAAAAAAAHAAsAAgAAAAAAAAAAAAsAAgAAAAAAAAABAAsAAgAAAAAAAAACAAsAAgAAAAAAAAAEAAsAAgABAAAAAAADAAsAAgAAAAAAAAAFAAsAAgABAAAAABAIAAsAAgABAAAAABAJAAsAAgAAAAAAAAAKAAsAAgABAAAAAAALAAsAAgAAAAAAAAAMAAsAAgABAAAAAAANAAsAAgAAAAAAAAANAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAADAAwAAAAAAAAAAAACAAwAAAAAAAAAAAABAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAD//wsAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_rlbb7")
+
+[node name="FishSpawn" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(929, 441)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 321)
+
+[node name="Player" parent="." instance=ExtResource("1_6meq4")]
+unique_name_in_owner = true
+position = Vector2(552, 435)
+
+[node name="Ground" type="RigidBody2D" parent="."]
+position = Vector2(8.00006, -51)
+physics_material_override = SubResource("PhysicsMaterial_p6hyu")
+lock_rotation = true
+freeze = true
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Ground"]
+position = Vector2(355.25, 624.25)
+shape = SubResource("RectangleShape2D_xypm6")
+
+[node name="DontDie" type="CollisionShape2D" parent="Ground"]
+position = Vector2(702, 489.625)
+shape = SubResource("RectangleShape2D_7hgr0")
+
+[node name="DontLeave" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-25.0001, 493)
+shape = SubResource("RectangleShape2D_7hgr0")
+
+[node name="Fishing" type="Area2D" parent="."]
+visible = false
+position = Vector2(8.00006, -51)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fishing"]
+position = Vector2(642, 481)
+shape = SubResource("RectangleShape2D_etin0")
+debug_color = Color(0.792893, 0.290586, 0.784306, 0.42)
+
+[node name="Spawn" parent="." instance=ExtResource("3_0re32")]
+position = Vector2(945, 548)
+scale = Vector2(2.2, 2.2)
+
+[node name="White" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wmgv2")
+position = Vector2(644.5, 637.75)
+scale = Vector2(9.54348, 1.79323)
+texture = ExtResource("8_mcovv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xw8vr")
+
+[connection signal="grab" from="." to="Cat" method="_on_main_grab"]
+[connection signal="grab" from="." to="Player" method="_on_main_grab"]
+[connection signal="cat_has_eat" from="Cat" to="." method="_on_cat_cat_has_eat"]
+[connection signal="phising" from="Player" to="Spawn" method="_on_player_phising"]
+[connection signal="touche" from="Player" to="Spawn" method="_on_player_touche"]
+[connection signal="body_entered" from="Fishing" to="Player" method="_on_fishing_body_entered"]
+[connection signal="body_exited" from="Fishing" to="Player" method="_on_fishing_body_exited"]
+[connection signal="ca_mord" from="Spawn" to="." method="_on_spawn_ca_mord"]

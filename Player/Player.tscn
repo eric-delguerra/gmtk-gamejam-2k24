@@ -1,0 +1,158 @@
+[gd_scene load_steps=21 format=3 uid="uid://wm48lx3lhf8q"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_fqnmq"]
+[ext_resource type="Texture2D" uid="uid://dy5hgfjm760em" path="res://Sprites/Space1.png" id="2_y5roq"]
+[ext_resource type="Texture2D" uid="uid://wgqur7koavab" path="res://Sprites/Space2.png" id="3_wt1dp"]
+[ext_resource type="Texture2D" uid="uid://cwg7xfys5alnd" path="res://Sprites/PlayerAnimation/Fisher_walk1.png" id="4_doxk3"]
+[ext_resource type="Texture2D" uid="uid://chmkq2ej73qaa" path="res://Sprites/PlayerAnimation/Fisher_idle2.png" id="5_okpkh"]
+[ext_resource type="Texture2D" uid="uid://1p71ryuvm1pm" path="res://Sprites/PlayerAnimation/Fisher_walk2.png" id="5_rkc7h"]
+[ext_resource type="Texture2D" uid="uid://cljp44kyva7xd" path="res://Sprites/PlayerAnimation/Fisher_idle.png" id="6_153ly"]
+[ext_resource type="Texture2D" uid="uid://blc2pbg8tba1o" path="res://Sprites/PlayerAnimation/Canne/Canne1.png" id="6_pkimj"]
+[ext_resource type="Texture2D" uid="uid://wt6lcw4k7mf5" path="res://Sprites/PlayerAnimation/Canne/Canne2.png" id="7_wikjt"]
+[ext_resource type="Texture2D" uid="uid://ha60cbphvi3e" path="res://Sprites/PlayerAnimation/Canne/Canne3.png" id="8_tesdx"]
+[ext_resource type="Texture2D" uid="uid://d13368a6rhl36" path="res://Sprites/PlayerAnimation/Canne/Canne4.png" id="9_baa2d"]
+[ext_resource type="Texture2D" uid="uid://b51cmwolawo8g" path="res://Sprites/PlayerAnimation/Canne/Canne5.png" id="10_4o1mm"]
+[ext_resource type="Texture2D" uid="uid://b1785i3u0chy5" path="res://Sprites/PlayerAnimation/Canne/Canne6.png" id="11_b8uo3"]
+[ext_resource type="Texture2D" uid="uid://cxb1ik4s65y8w" path="res://Sprites/PlayerAnimation/Canne/Canne7.png" id="12_n8nl2"]
+[ext_resource type="Texture2D" uid="uid://b65myni7odaqw" path="res://Sprites/PlayerAnimation/Canne/Canne8.png" id="13_o0y31"]
+[ext_resource type="Texture2D" uid="uid://nh4p75ph2ia6" path="res://Sprites/PlayerAnimation/Canne/Canne9.png" id="14_3x3ce"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llfne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_okpkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_153ly")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("4_doxk3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_rkc7h")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1c2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y5roq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wt1dp")
+}],
+"loop": true,
+"name": &"Press",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vo5rk"]
+radius = 8.0
+height = 31.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oi6w6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pkimj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wikjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tesdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_baa2d")
+}],
+"loop": false,
+"name": &"Fish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pkimj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pkimj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wikjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tesdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_baa2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4o1mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b8uo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n8nl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o0y31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3x3ce")
+}],
+"loop": false,
+"name": &"Throw",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_fqnmq")
+
+[node name="BoutDeCanne" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(20, -12)
+scale = Vector2(1.21875, 1.0625)
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_llfne")
+animation = &"Walk"
+frame_progress = 0.00330061
+speed_scale = 0.3
+
+[node name="SpaceButtonAnimation" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+sprite_frames = SubResource("SpriteFrames_t1c2k")
+animation = &"Press"
+speed_scale = 0.6
+offset = Vector2(0, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 5)
+shape = SubResource("CapsuleShape2D_vo5rk")
+
+[node name="PhisingAnimation" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10.5, -3)
+scale = Vector2(1.21875, 1.0625)
+sprite_frames = SubResource("SpriteFrames_oi6w6")
+animation = &"Throw"
+speed_scale = 2.0

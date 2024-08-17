@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd58vfnq53rmq"]
+
+[ext_resource type="Texture2D" uid="uid://y7kvrsogur2d" path="res://Sprites/Fishes/fish01.png" id="1_x36ol"]
+[ext_resource type="Texture2D" uid="uid://bcqn82mg4cejh" path="res://Sprites/Fishes/fish02.png" id="2_o5xdx"]
+[ext_resource type="Texture2D" uid="uid://dqg1oiwcekuvo" path="res://Sprites/Fishes/fish03.png" id="3_fsrfg"]
+[ext_resource type="Script" path="res://Fish/fish.gd" id="4_btk11"]
+[ext_resource type="Texture2D" uid="uid://behho66kwgnv8" path="res://Sprites/Fishes/fish04.png" id="4_egjf1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nsdyb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_x36ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o5xdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fsrfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_egjf1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fish" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nsdyb")
+speed_scale = 0.0
+script = ExtResource("4_btk11")

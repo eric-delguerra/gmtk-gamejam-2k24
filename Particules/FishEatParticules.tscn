@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dspeor8gogsw6"]
+
+[ext_resource type="Texture2D" uid="uid://dk4plnhfgqyw8" path="res://Sprites/Particules/os1.png" id="1_0gvaq"]
+[ext_resource type="Texture2D" uid="uid://ckib3yqbx3v2e" path="res://Sprites/Particules/os3.png" id="2_fnvkg"]
+[ext_resource type="Texture2D" uid="uid://cxhxohkg12igj" path="res://Sprites/Particules/os2.png" id="3_n0hl5"]
+
+[sub_resource type="Curve" id="Curve_lvcqk"]
+_data = [Vector2(0.0179211, 0.286237), 0.0, 0.0, 0, 0, Vector2(0.964158, 0.219619), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="FishEatParticules" type="CPUParticles2D"]
+amount = 5
+lifetime = 1.8
+explosiveness = 0.2
+randomness = 0.17
+lifetime_randomness = 0.09
+fixed_fps = 120
+texture = ExtResource("1_0gvaq")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 26.84
+angle_min = -145.0
+angle_max = 183.6
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_lvcqk")
+
+[node name="Particules" type="CPUParticles2D" parent="."]
+amount = 5
+explosiveness = 0.35
+randomness = 0.34
+lifetime_randomness = 0.05
+fixed_fps = 120
+texture = ExtResource("2_fnvkg")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 13.42
+initial_velocity_max = 40.27
+angle_min = -145.0
+angle_max = 183.6
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_lvcqk")
+
+[node name="Particules2" type="CPUParticles2D" parent="."]
+amount = 5
+explosiveness = 0.1
+randomness = 0.34
+fixed_fps = 120
+texture = ExtResource("3_n0hl5")
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.71
+initial_velocity_max = 67.12
+angle_min = -145.0
+angle_max = 183.6
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_lvcqk")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://6cb6d2rt1jnr"]
+
+[ext_resource type="Texture2D" uid="uid://blc2pbg8tba1o" path="res://Sprites/PlayerAnimation/Canne/Canne1.png" id="1_60siv"]
+[ext_resource type="Texture2D" uid="uid://wt6lcw4k7mf5" path="res://Sprites/PlayerAnimation/Canne/Canne2.png" id="2_65ncb"]
+[ext_resource type="Texture2D" uid="uid://ha60cbphvi3e" path="res://Sprites/PlayerAnimation/Canne/Canne3.png" id="3_3kj2n"]
+[ext_resource type="Texture2D" uid="uid://d13368a6rhl36" path="res://Sprites/PlayerAnimation/Canne/Canne4.png" id="4_m86rj"]
+[ext_resource type="Texture2D" uid="uid://b51cmwolawo8g" path="res://Sprites/PlayerAnimation/Canne/Canne5.png" id="5_o7rke"]
+[ext_resource type="Texture2D" uid="uid://b1785i3u0chy5" path="res://Sprites/PlayerAnimation/Canne/Canne6.png" id="6_6g5l0"]
+[ext_resource type="Texture2D" uid="uid://cxb1ik4s65y8w" path="res://Sprites/PlayerAnimation/Canne/Canne7.png" id="7_4p7rv"]
+[ext_resource type="Texture2D" uid="uid://b65myni7odaqw" path="res://Sprites/PlayerAnimation/Canne/Canne8.png" id="8_tlus2"]
+[ext_resource type="Texture2D" uid="uid://nh4p75ph2ia6" path="res://Sprites/PlayerAnimation/Canne/Canne9.png" id="9_yan0b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oi6w6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_60siv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_65ncb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3kj2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m86rj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o7rke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6g5l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4p7rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tlus2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yan0b")
+}],
+"loop": false,
+"name": &"Throw",
+"speed": 5.0
+}]
+
+[node name="PhisingAnimation" type="AnimatedSprite2D"]
+position = Vector2(10, -4)
+scale = Vector2(1.21875, 1.0625)
+sprite_frames = SubResource("SpriteFrames_oi6w6")
+animation = &"Throw"
+autoplay = "Throw"
+speed_scale = 1.5

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfpnjyhebask"]
+
+[ext_resource type="Texture2D" uid="uid://y3cpxa5cct0p" path="res://Sprites/PlayerAnimation/Bouchon/Bouchon1.png" id="1_k3ptb"]
+[ext_resource type="Texture2D" uid="uid://brwwti0njo8mv" path="res://Sprites/PlayerAnimation/Bouchon/Bouchon2.png" id="2_eqf3g"]
+[ext_resource type="Texture2D" uid="uid://dbei8qbe42qga" path="res://Sprites/PlayerAnimation/Bouchon/Bouchon3.png" id="3_0l1dp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dj3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k3ptb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eqf3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0l1dp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eqf3g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bouchon" type="AnimatedSprite2D"]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_7dj3m")
+autoplay = "default"
+frame_progress = 0.541772

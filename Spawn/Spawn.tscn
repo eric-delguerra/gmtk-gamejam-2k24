@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8xgl7ttf2eg8"]
+
+[ext_resource type="Script" path="res://Spawn/spawn.gd" id="1_7e3y7"]
+[ext_resource type="PackedScene" uid="uid://vfpnjyhebask" path="res://Spawn/bouchon.tscn" id="2_yxl6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adhsd"]
+size = Vector2(198, 20)
+
+[node name="Spawn" type="Area2D"]
+script = ExtResource("1_7e3y7")
+spawn_scene = ExtResource("2_yxl6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_adhsd")

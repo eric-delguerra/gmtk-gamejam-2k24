@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://vx1a0boquqco"]
+
+[ext_resource type="Texture2D" uid="uid://jq5dtfdaiegl" path="res://Sprites/QTE/QTE1.png" id="1_1388l"]
+[ext_resource type="Texture2D" uid="uid://cw3e7fpeksxf5" path="res://Sprites/QTE/QTE2.png" id="2_orfc7"]
+[ext_resource type="Texture2D" uid="uid://dmfnvewdn6vb2" path="res://Sprites/QTE/QTE3.png" id="3_f3era"]
+[ext_resource type="Texture2D" uid="uid://bmhkvf7ln3fck" path="res://Sprites/QTE/QTE4.png" id="4_l3c25"]
+[ext_resource type="Texture2D" uid="uid://dcdd626ek0m2t" path="res://Sprites/QTE/QTE5.png" id="5_klvn3"]
+[ext_resource type="Texture2D" uid="uid://dcth1yv8mnx3m" path="res://Sprites/QTE/QTE6.png" id="6_lqibw"]
+[ext_resource type="Texture2D" uid="uid://bjqnek44m2c7i" path="res://Sprites/QTE/QTE7.png" id="7_krjr7"]
+[ext_resource type="Script" path="res://QTE/qte.gd" id="8_x8yr7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poehq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1388l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_orfc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f3era")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l3c25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_klvn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lqibw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_krjr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_krjr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lqibw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_klvn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l3c25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f3era")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_orfc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1388l")
+}],
+"loop": true,
+"name": &"qte_forward",
+"speed": 5.0
+}]
+
+[node name="Qte" type="AnimatedSprite2D"]
+position = Vector2(0, 8.33334)
+scale = Vector2(1.41667, 1.41667)
+sprite_frames = SubResource("SpriteFrames_poehq")
+animation = &"qte_forward"
+frame_progress = 0.527447
+offset = Vector2(0, -35)
+script = ExtResource("8_x8yr7")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://x1fg6daeoi16"]
+
+[ext_resource type="Texture2D" uid="uid://e1ivphku32pn" path="res://Sprites/Particules/heart.png" id="1_81xnc"]
+
+[node name="Love" type="CPUParticles2D"]
+amount = 6
+lifetime = 1.4
+fixed_fps = 120
+texture = ExtResource("1_81xnc")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 4)
+direction = Vector2(0, -1)
+spread = 65.0
+gravity = Vector2(0, -40)
+initial_velocity_min = 2.0
+initial_velocity_max = 15.0
+radial_accel_min = -10.0
+radial_accel_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+color = Color(0.993127, 0.821715, 0.816404, 1)
