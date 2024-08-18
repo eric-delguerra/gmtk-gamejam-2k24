@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj702exhbtpui"]
+
+[ext_resource type="Script" path="res://UI/animated_label.gd" id="1_vlij1"]
+
+[node name="AnimatedLabel" type="Label"]
+offset_right = 305.0
+offset_bottom = 69.0
+text = "Texte d'exemple pour voir la place que ca prend à écrire autant de chose inutile"
+autowrap_mode = 2
+script = ExtResource("1_vlij1")

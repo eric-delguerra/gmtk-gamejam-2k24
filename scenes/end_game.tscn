@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://clawcewfhbpmm"]
+
+[ext_resource type="PackedScene" uid="uid://cpmjlc8e34e02" path="res://UI/EndGame.tscn" id="1_wahgn"]
+[ext_resource type="Script" path="res://scenes/end_game.gd" id="2_jbr2f"]
+[ext_resource type="Texture2D" uid="uid://b2k85qbaivuiw" path="res://Sprites/Ressources/Ocean_6/2.png" id="3_dg8rd"]
+[ext_resource type="PackedScene" uid="uid://dj702exhbtpui" path="res://UI/AnimatedLabel.tscn" id="4_cjrcq"]
+
+[node name="EndGame" instance=ExtResource("1_wahgn")]
+script = ExtResource("2_jbr2f")
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.20327e-08, 0.103226, 0.183264, 1)
+
+[node name="2" type="Sprite2D" parent="." index="1"]
+position = Vector2(784, 291)
+scale = Vector2(2.22222, 2.22222)
+texture = ExtResource("3_dg8rd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
+volume_db = 5.0
+
+[node name="AnimatedLabel" parent="." index="4" instance=ExtResource("4_cjrcq")]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 425.0
+offset_right = 349.0
+offset_bottom = 494.0
+text = "Looks like you’ve become the main course... The cat thanks you for dinner!"
+text_time = 2.0
+free_time = 60.0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

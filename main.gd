@@ -1,4 +1,4 @@
-extends Node2D
+class_name Main extends Node2D
 
 signal grab(fish_mass)
 
@@ -11,6 +11,7 @@ const QTE = preload("res://QTE/QTE.tscn")
 
 var fish_ref
 var fish_ref_rb
+
 
 #func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_accept"):
@@ -55,3 +56,8 @@ func remove_fish():
 
 func _on_cat_cat_has_eat() -> void:
 	fish_ref.being_eat()
+
+func _on_cat_final() -> void:
+	var END_GAME = preload("res://scenes/end_game.tscn").instantiate()
+	get_tree().root.add_child(END_GAME)
+	pass # Replace with function body.

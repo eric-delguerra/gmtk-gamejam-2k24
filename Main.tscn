@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://b1tu5po4y712s"]
+[gd_scene load_steps=38 format=4 uid="uid://b1tu5po4y712s"]
 
 [ext_resource type="PackedScene" uid="uid://wm48lx3lhf8q" path="res://Player/Player.tscn" id="1_6meq4"]
 [ext_resource type="Script" path="res://main.gd" id="1_ctjlf"]
@@ -12,9 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://b2k85qbaivuiw" path="res://Sprites/Ressources/Ocean_6/2.png" id="5_17hn7"]
 [ext_resource type="Shader" path="res://Shaders/water_shader.gdshader" id="7_auajo"]
 [ext_resource type="Texture2D" uid="uid://dr00p6g36v4au" path="res://Sprites/Ressources/white.png" id="8_mcovv"]
+[ext_resource type="Texture2D" uid="uid://prgoadfqa7kx" path="res://Sprites/Ressources/panneau.png" id="9_525km"]
 [ext_resource type="PackedScene" uid="uid://dmud2werglain" path="res://Cat/Cat.tscn" id="9_poinw"]
+[ext_resource type="Texture2D" uid="uid://cu82b08qsio4g" path="res://Sprites/Ressources/panneau2.png" id="10_3lk5y"]
 [ext_resource type="Texture2D" uid="uid://ckl6t6a3uwnhd" path="res://Sprites/Ressources/sol.png" id="10_8csvp"]
 [ext_resource type="Texture2D" uid="uid://d1jjc3yvnja8k" path="res://Sprites/Ressources/sols.png" id="11_05bcy"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="14_2dldr"]
+[ext_resource type="AudioStream" uid="uid://u4d236tawht3" path="res://Sounds/Game.ogg" id="16_lh0hd"]
+[ext_resource type="AudioStream" uid="uid://b607n4ub3eij1" path="res://Sounds/Menu.ogg" id="17_snrvu"]
+[ext_resource type="PackedScene" uid="uid://dc434v1tss5nc" path="res://UI/Menu.tscn" id="20_3shce"]
+[ext_resource type="Script" path="res://UI/menu.gd" id="21_4kkep"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hofnq"]
 shader = ExtResource("3_uujab")
@@ -79,49 +86,67 @@ glow_enabled = true
 glow_bloom = 0.03
 glow_hdr_luminance_cap = 8.47
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_irxn0"]
+fade_time = 0.05
+stream_count = 2
+stream_0 = ExtResource("16_lh0hd")
+stream_1 = ExtResource("17_snrvu")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ctjlf")
 
-[node name="Decort" type="Node2D" parent="."]
+[node name="Env" type="Node2D" parent="."]
 position = Vector2(8.00006, -51)
 
-[node name="fond" type="Sprite2D" parent="Decort"]
+[node name="fond" type="Sprite2D" parent="Env"]
 position = Vector2(583, 407)
 scale = Vector2(2.27662, 2.30247)
 texture = ExtResource("2_hbibc")
 
-[node name="lune" type="Sprite2D" parent="Decort"]
+[node name="lune" type="Sprite2D" parent="Env"]
 position = Vector2(682, 426)
 scale = Vector2(1.47222, 1.47222)
 texture = ExtResource("5_17hn7")
 
-[node name="nuage" type="Sprite2D" parent="Decort"]
+[node name="nuage" type="Sprite2D" parent="Env"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_hofnq")
 position = Vector2(638, 393)
 scale = Vector2(2.28472, 2.28472)
 texture = ExtResource("4_imepl")
 
-[node name="Sign" type="Sprite2D" parent="Decort"]
-position = Vector2(154, 490)
+[node name="Sign" type="Sprite2D" parent="Env"]
+position = Vector2(71, 491)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_hc782")
 
-[node name="Lamp" type="Sprite2D" parent="Decort"]
+[node name="Lamp" type="Sprite2D" parent="Env"]
 position = Vector2(475, 450)
 scale = Vector2(2.8913, 2.8913)
 texture = ExtResource("3_5jo27")
 flip_h = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Decort/Lamp"]
+[node name="Sprite2D" type="Sprite2D" parent="Env/Lamp"]
 self_modulate = Color(77.838, 51.351, 0, 0.048)
 material = SubResource("CanvasItemMaterial_ox6sh")
 position = Vector2(5.87969, -6.22557)
 scale = Vector2(0.0350878, 0.0417112)
 texture = ExtResource("8_mcovv")
 
+[node name="Panneau" type="Sprite2D" parent="Env"]
+position = Vector2(645, 464)
+scale = Vector2(1.36458, 1.36458)
+texture = ExtResource("9_525km")
+
+[node name="Panneau2" type="Sprite2D" parent="Env"]
+position = Vector2(433, 484)
+scale = Vector2(0.980417, 0.980417)
+texture = ExtResource("10_3lk5y")
+
 [node name="Cat" parent="." instance=ExtResource("9_poinw")]
-position = Vector2(93, 478)
+position = Vector2(197, 478)
+animation = &"Eat"
+frame_progress = 0.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(8.00006, -51)
@@ -134,10 +159,14 @@ position = Vector2(929, 441)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(578, 321)
+offset = Vector2(-30, -255)
+zoom = Vector2(6.415, 6.415)
+position_smoothing_enabled = true
+script = ExtResource("14_2dldr")
 
 [node name="Player" parent="." instance=ExtResource("1_6meq4")]
 unique_name_in_owner = true
-position = Vector2(552, 435)
+position = Vector2(375, 436)
 
 [node name="Ground" type="RigidBody2D" parent="."]
 position = Vector2(8.00006, -51)
@@ -158,7 +187,6 @@ position = Vector2(-25.0001, 493)
 shape = SubResource("RectangleShape2D_7hgr0")
 
 [node name="Fishing" type="Area2D" parent="."]
-visible = false
 position = Vector2(8.00006, -51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fishing"]
@@ -167,7 +195,7 @@ shape = SubResource("RectangleShape2D_etin0")
 debug_color = Color(0.792893, 0.290586, 0.784306, 0.42)
 
 [node name="Spawn" parent="." instance=ExtResource("3_0re32")]
-position = Vector2(945, 548)
+position = Vector2(934, 550)
 scale = Vector2(2.2, 2.2)
 
 [node name="White" type="Sprite2D" parent="."]
@@ -179,11 +207,40 @@ texture = ExtResource("8_mcovv")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xw8vr")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_irxn0")
+volume_db = -10.0
+autoplay = true
+
+[node name="Menu" parent="." instance=ExtResource("20_3shce")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = 550.0
+offset_top = 150.0
+offset_right = 550.0
+offset_bottom = 150.0
+grow_vertical = 1
+scale = Vector2(0.315, 0.315)
+script = ExtResource("21_4kkep")
+
 [connection signal="grab" from="." to="Cat" method="_on_main_grab"]
 [connection signal="grab" from="." to="Player" method="_on_main_grab"]
 [connection signal="cat_has_eat" from="Cat" to="." method="_on_cat_cat_has_eat"]
+[connection signal="final" from="Cat" to="." method="_on_cat_final"]
+[connection signal="final" from="Cat" to="Player" method="_on_cat_final"]
+[connection signal="body_entered" from="Cat/Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cat/Area2D" to="Player" method="_on_area_2d_body_exited"]
 [connection signal="phising" from="Player" to="Spawn" method="_on_player_phising"]
 [connection signal="touche" from="Player" to="Spawn" method="_on_player_touche"]
 [connection signal="body_entered" from="Fishing" to="Player" method="_on_fishing_body_entered"]
 [connection signal="body_exited" from="Fishing" to="Player" method="_on_fishing_body_exited"]
 [connection signal="ca_mord" from="Spawn" to="." method="_on_spawn_ca_mord"]
+[connection signal="pressed" from="Menu/Play" to="Camera2D" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Play" to="Menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_quit_pressed"]
+
+[editable path="Cat"]
+[editable path="Spawn"]
+[editable path="Menu"]

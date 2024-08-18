@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmud2werglain"]
+[gd_scene load_steps=10 format=3 uid="uid://dmud2werglain"]
 
 [ext_resource type="Texture2D" uid="uid://bs5sebgm24v4f" path="res://Sprites/Cat/cat4.png" id="1_ktudx"]
 [ext_resource type="Texture2D" uid="uid://fe11y4205juq" path="res://Sprites/Cat/cat1.png" id="2_s4jvl"]
 [ext_resource type="Texture2D" uid="uid://df75mgaawnhj" path="res://Sprites/Cat/cat2.png" id="3_5tha2"]
 [ext_resource type="Texture2D" uid="uid://bmitbkl3ihag8" path="res://Sprites/Cat/cat3.png" id="4_648q5"]
 [ext_resource type="Script" path="res://Cat/cat.gd" id="5_at0ol"]
+[ext_resource type="PackedScene" uid="uid://dj702exhbtpui" path="res://UI/AnimatedLabel.tscn" id="6_qjfgt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qwcy5"]
 animations = [{
@@ -59,4 +60,15 @@ shape = SubResource("RectangleShape2D_d05vm")
 position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_l3v86")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.0
+
+[node name="AnimatedLabel" parent="." instance=ExtResource("6_qjfgt")]
+offset_left = -55.0
+offset_top = -61.0
+offset_right = 74.0
+offset_bottom = -46.0
+text = "Meeeeooooww !"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

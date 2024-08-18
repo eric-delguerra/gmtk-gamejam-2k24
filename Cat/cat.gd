@@ -1,14 +1,47 @@
 extends AnimatedSprite2D
 
 signal cat_has_eat()
+signal final()
 
 const LOVE = preload("res://Particules/Love.tscn")
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+const CAT_01 = preload("res://Sounds/cat-01.mp3")
+const CAT_02 = preload("res://Sounds/cat-02.mp3")
+const CAT_03 = preload("res://Sounds/cat-03.mp3")
+const CAT_04 = preload("res://Sounds/cat-04.mp3")
+const CAT_05 = preload("res://Sounds/cat-05.mp3")
+
+const ANIMATED_LABEL = preload("res://UI/AnimatedLabel.tscn")
 
 var need_to_grow = false
 var fish_mass = 0
-# Called when the node enters the scene tree for the first time.
+
+var player_contact = false
+
+var _final = false
+
 func _ready() -> void:
-	pass
+	play_sound()
+
+func _process(_delta: float) -> void:
+	if player_contact:
+		if(Input.is_action_just_pressed("ui_accept")):
+			var label = ANIMATED_LABEL.instantiate()
+			label.text = "Meeeeooooww !"
+			label.scale *= .6
+			label.position = Vector2(-35, -60) 
+			add_child(label)
+			var particles = LOVE.instantiate()
+			add_child(particles)
+			particles.one_shot = true
+			particles.emitting = true
+			particles.amount = randi_range(3, 5)
+			particles.global_position.y = global_position.y - 30
+	
+	if scale.y > 12 and !_final:
+		_final = true
+		final.emit()
 	
 func _physics_process(_delta: float) -> void:
 	if(need_to_grow):
@@ -43,13 +76,21 @@ func eat():
 func adjust_scale_and_position():
 	var res = calculate_scale_from_mass(fish_mass)
 	var tween = get_tree().create_tween()
+	print(str(res))
+	var new_scale 
+	if res < 1:
+		new_scale = scale - Vector2(res, res)
+	else:
+		new_scale = scale + Vector2(res, res)
+		 
 	tween.tween_property(
 		self,
 		"scale",
-		Vector2(res, res),
+		new_scale,
 		1.5,
 	)
 	tween.play()
+	
 
 func calculate_scale_from_mass(mass: float, min_scale: float = 0.5, max_scale: float = 3.0) -> float:
 	var min_mass = 0.1
@@ -64,10 +105,25 @@ func calculate_scale_from_mass(mass: float, min_scale: float = 0.5, max_scale: f
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.name == 'Player'):
-		var particles = LOVE.instantiate()
-		add_child(particles)
-		particles.one_shot = true
-		particles.emitting = true
-		particles.amount = randi_range(3, 5)
-		particles.global_position.y = global_position.y - 30
-		print('playeur')
+		player_contact = true
+		play_sound()
+
+func play_sound():
+	var rand = randf()
+	if (rand < .2):
+		audio_stream_player_2d.stream = CAT_01
+	elif (rand < .4):
+		audio_stream_player_2d.stream = CAT_02
+	elif (rand < .6):
+		audio_stream_player_2d.stream = CAT_03
+	elif (rand < .8):
+		audio_stream_player_2d.stream = CAT_04
+	elif (rand < 1):
+		audio_stream_player_2d.stream = CAT_05
+	
+	audio_stream_player_2d.play()
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if(body.name == 'Player'):
+		player_contact = false

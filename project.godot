@@ -33,6 +33,11 @@ folder_colors={
 "res://Sprites/": "yellow"
 }
 
+[gui]
+
+theme/custom="res://UI/base_theme.tres"
+theme/custom_font="res://Sprites/Ressources/VCR_OSD_MONO_1.001.ttf"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

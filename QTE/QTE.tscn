@@ -67,3 +67,5 @@ animation = &"qte_forward"
 frame_progress = 0.527447
 offset = Vector2(0, -35)
 script = ExtResource("8_x8yr7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

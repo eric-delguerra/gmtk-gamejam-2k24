@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://vfpnjyhebask" path="res://Spawn/bouchon.tscn" id="2_yxl6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adhsd"]
-size = Vector2(198, 20)
+size = Vector2(198, 38)
 
 [node name="Spawn" type="Area2D"]
 script = ExtResource("1_7e3y7")
 spawn_scene = ExtResource("2_yxl6q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_adhsd")
